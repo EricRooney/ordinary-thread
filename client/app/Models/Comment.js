@@ -5,9 +5,10 @@ export default class Comment {
     this.body = data.body;
     this.thumbsUp = data.thumbsUp;
     this.thumbsDown = data.thumbsDown;
+    this.id = data.id;
   }
 
   get Template() {
-    return this.body;
+    return;
   }
 }

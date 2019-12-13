@@ -6,6 +6,7 @@ export default class Post {
     this.title = data.title;
     this.thumbsUp = data.thumbsUp;
     this.thumbsDown = data.thumbsDown;
+    this.id = data.id;
   }
 
   get Template() {
@@ -25,7 +26,7 @@ export default class Post {
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">${this.title}<button>X</button><button>EDIT</button></button></h5>
+                    <h5 class="card-title">${this.title}<button onclick="app.postsController.deletePostAsync('${this.id}')">X</button><button>EDIT</button></button></h5>
 
                     <p class="card-text">
                       ${this.body}
