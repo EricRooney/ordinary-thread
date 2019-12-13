@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import Post from "../models/Post";
+import Comment from "../models/Comment";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Post", Post);
+const _repository = mongoose.model("Comment", Comment);
 
 class PostService {
   async getAll() {
@@ -47,5 +47,5 @@ class PostService {
   }
 }
 
-const postService = new PostService();
-export default postService;
+const commentService = new CommentsService();
+export default commentService;
