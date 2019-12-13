@@ -89,10 +89,35 @@
                 </ul>
           </div>
           <div class="col-md-9">
-            <button class="fa fa-plus-circle" aria-hidden="true"></button><h4>Draw Post</h4>
+            <a href="#" id="button" class="fa fa-plus-circle" aria-hidden="true">Add Post</a>
+            <!--INPUT MODAL -->
+            <div class="bg-modal">
+                <div class="modal-contents">
+            
+                    <div class="close">+</div>
+                    <img src="https://placehold.it/25X25" alt="">
+            
+                    <form onsubmit="app.postsController.addPostAsync(event)">
+                        <input type="text" name="img" placeholder="Img Url">
+                        <input type="text" name="title" placeholder="Post Title">
+                        <input type="text" name="body" placeholder="Caption">
+                        <button class="button">Submit</button>
+                    </form>
+            
+                </div>
+            </div>
             <h2>POST SAMPLE MOCKUP</h2>
             <div id="post-template"></div><!--POST TEMPLATE-->
-
+            <div>  <p class="pull-right"><small>5 days ago</small></p>
+              <a class="media-left" href="#">
+                <img src="http://lorempixel.com/40/40/people/2/">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading user_name">Baltej Singh</h4>
+                Wow! this is really great.
+                <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+              </div>
+            </div></div>
 
             <!-- <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
@@ -107,7 +132,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Drink title<button>X</button><button>EDIT</button></button></h5>
+                    <h5 class="card-title">Drink title<button>X</button><button>EDIT</button></butt></h5>
 
                     <p class="card-text">
                       This is a wider card with supporting text below as a natural
@@ -121,6 +146,8 @@
                 </div>
               </div>
             </div> -->
+
+
           </main>
           </div>
         </div>
@@ -131,6 +158,19 @@
       integrity="sha256-XmdRbTre/3RulhYk/cOBUMpYlaAp2Rpo/s556u0OIKk="
       crossorigin="anonymous"
     ></script>
+
+    <script>
+    // <!--JAVASCRIPT-Items-to-add-to-main-file TODO -->
+
+    document.getElementById('button').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "none";
+});
+
+</script>
     <script src="app/main.js" type="module"></script>
   </body>
 </html>

@@ -1,6 +1,5 @@
 import PostsService from "../Services/PostsService.js";
 import store from "../store.js";
-import post from "../Models/Post.js";
 
 //Private
 function _drawPost() {
@@ -14,6 +13,7 @@ function _drawPost() {
 //Public
 export default class PostsController {
   constructor() {
+    PostsService.getPostAsync();
     _drawPost();
     store.subscribe("posts", _drawPost);
   }
@@ -22,6 +22,30 @@ export default class PostsController {
       await PostsService.deletePostAsync(postId);
     } catch (error) {
       debugger;
+      console.error("[ERROR]:", error);
+    }
+  }
+  // async editPostAsync(postId) {
+  //   try {
+  //     await PostsService.editPostAsync(postId);
+  //   } catch (error) {
+  //     debugger;
+  //     console.error("[ERROR]:", error);
+  //   }
+  // }
+
+  async addPostAsync(event) {
+    event.preventDefault();
+    let form = event.target;
+    let post = {
+      title: form.title.value,
+      img: form.img.value,
+      body: form.body.value
+    };
+    console.log("we GOT HERE", post);
+    try {
+      await PostsService.addPostAsync(post);
+    } catch (error) {
       console.error("[ERROR]:", error);
     }
   }
