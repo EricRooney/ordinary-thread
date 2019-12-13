@@ -10,6 +10,7 @@ function _drawUser() {
 //Public
 export default class UsersController {
   constructor() {
+    _drawUser();
     store.subscribe("users", _drawUser);
   }
 }

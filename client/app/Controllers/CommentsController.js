@@ -10,6 +10,7 @@ function _drawComment() {
 //Public
 export default class CommentsController {
   constructor() {
+    _drawComment();
     store.subscribe("comments", _drawComment);
   }
 }

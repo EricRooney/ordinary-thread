@@ -10,6 +10,7 @@ function _drawPost() {
 //Public
 export default class PostsController {
   constructor() {
+    _drawPost();
     store.subscribe("posts", _drawPost);
   }
 }
