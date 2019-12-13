@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Post = new Schema(
   {
-    userId: { type: String }, //need to put required back
+    userId: { type: String, required: true },
     body: { type: String, required: true },
     img: { type: String },
     title: { type: String, required: true },

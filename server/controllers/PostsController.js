@@ -1,13 +1,14 @@
 import express from "express";
 import postService from "../services/PostsService";
-
+import commentsService from "../services/CommentsService";
 export default class PostController {
   constructor() {
     this.router = express
       .Router()
 
-      .get("", this.getAll) //This is for testing, make sure to remove before production
+      .get("", this.getAll)
       .get("/:id", this.getById)
+      .get("/:id/comments", this.getCommentByPostId)
       .get("/:name", this.getByName)
       .post("", this.create)
       .put("/:id", this.edit)
@@ -15,7 +16,6 @@ export default class PostController {
   }
 
   async getAll(req, res, next) {
-    //This is for testing, make sure to remove before production
     try {
       let data = await postService.getAll();
       return res.send(data);
@@ -24,6 +24,14 @@ export default class PostController {
     }
   }
 
+  async getCommentByPostId(req, res, next) {
+    try {
+      let data = await commentsService.getCommentByPostId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async getById(req, res, next) {
     try {
       let data = await postService.getById(req.params.id);
