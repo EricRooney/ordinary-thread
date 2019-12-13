@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const Comment = new Schema(
   {
-    userId: { type: String, required: true },
-    PostId: { type: String, required: true },
+    userId: { type: String }, //NOTE Make required before you push to production
+    postId: { type: String, required: true },
     body: { type: String, required: true },
     thumbsUp: { type: Number },
     thumbsDown: { type: Number }

@@ -10,7 +10,11 @@ class PostService {
   }
 
   async getPostsByUser(userId) {
-    return await _repository.find({ userId: userId });
+    let data = await _repository.find({ userId: userId });
+    if (!data) {
+      throw new ApiError("Invalid Id", 400);
+    }
+    return data;
   }
 
   async getById(id) {
