@@ -3,8 +3,11 @@ import store from "../store.js";
 
 //Private
 function _drawComment() {
-  let comments = store.State.comments;
-  console.log("From the comments controller", comments);
+  let template = "";
+  let comment = store.State.comments;
+  comment.forEach(c => (template += c.Template));
+  document.getElementById("comment-template").innerHTML = template;
+  console.log("this is from the comment controller", comment);
 }
 
 //Public

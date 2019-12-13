@@ -4,7 +4,9 @@ import Comment from "./Models/Comment.js";
 
 let _state = {
   users: [],
-  posts: [],
+  posts: [
+    new Post({ title: "Hot Cross Buns", body: "This will F&*% you up yo" })
+  ],
   comments: []
 };
 
