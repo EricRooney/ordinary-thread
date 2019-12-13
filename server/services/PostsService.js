@@ -9,7 +9,7 @@ class PostService {
     return await _repository.find({});
   }
 
-  async getPostByUser(userId) {
+  async getPostsByUser(userId) {
     return await _repository.find({ userId: userId });
   }
 
