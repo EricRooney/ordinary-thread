@@ -5,9 +5,10 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("User", User);
 
 class UserService {
-  /*async getAll() {
+  async getAll() {
+    //This is for testing, make sure to remove before production
     return await _repository.find({});
-  }*/
+  }
   async getById(id) {
     let data = await _repository.findOne({ _id: id });
     if (!data) {
