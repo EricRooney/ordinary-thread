@@ -1,5 +1,6 @@
 import store from "../store.js";
 import Comment from "../Models/Comment.js";
+import PostsService from "../Services/PostsService";
 
 // @ts-ignore
 const _commentsApi = axios.create({
@@ -8,6 +9,13 @@ const _commentsApi = axios.create({
 });
 
 class CommentsService {
+  async getOnePost(id) {
+    try {
+      await PostsService.getOnePostAsync(id);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   async deleteCommentAsync(commentId) {
     let res = await _commentsApi.delete(commentId);
     console.log("deleted");
