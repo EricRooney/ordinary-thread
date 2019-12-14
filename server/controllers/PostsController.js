@@ -26,7 +26,7 @@ export default class PostController {
 
   async getCommentByPostId(req, res, next) {
     try {
-      let data = await commentsService.getCommentByPostId(req.params.id);
+      let data = await commentsService.getCommentByPostId();
       return res.send(data);
     } catch (error) {
       next(error);
