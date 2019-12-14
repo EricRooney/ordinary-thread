@@ -6,18 +6,27 @@ import Comment from "../Models/Comment.js";
 function _drawComment() {
   let template = "";
   let comment = store.State.comments;
+  console.log("this is from the comment controller", comment);
   comment.forEach(c => (template += c.Template));
-  document.getElementById("").innerHTML = template;
-  console.log("this is from the posts controller", post);
+  document.getElementById("comment").innerHTML = template;
 }
 
 //Public
 export default class CommentsController {
   constructor() {
-    commentService.getCommentsAsync();
-    _drawComment();
+    console.log("from the comment controller");
+    // this.getCommentAsync();
+    // _drawComment();
     store.subscribe("comments", _drawComment);
   }
+  async getCommentAsync() {
+    try {
+      await commentService.getCommentAsync();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async deleteCommentAsync(commentId) {
     try {
       await commentService.deleteCommentAsync(commentId);
@@ -26,21 +35,11 @@ export default class CommentsController {
       console.error("[ERROR]:", error);
     }
   }
-  // async editPostAsync(postId) {
-  //   try {
-  //     await PostsService.editPostAsync(postId);
-  //   } catch (error) {
-  //     debugger;
-  //     console.error("[ERROR]:", error);
-  //   }
-  // }
 
   async addCommentAsync(event) {
     event.preventDefault();
     let form = event.target;
     let comment = {
-      title: form.title.value,
-      img: form.img.value,
       body: form.body.value
     };
     console.log("we GOT HERE", comment);

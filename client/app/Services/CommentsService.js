@@ -17,11 +17,11 @@ class CommentsService {
     let res = await _commentsApi.get();
     let comment = res.data.map(c => new Comment(c));
     store.commit("comments", comment);
-    console.log("from store", store.State.comments);
+    console.log("from comment store", store.State.comments);
   }
   async addCommentAsync(comment) {
     let res = await _commentsApi.post("", comment);
-    console.log("from post service", res);
+    console.log("from comment service", res);
     this.getCommentAsync();
   }
 }

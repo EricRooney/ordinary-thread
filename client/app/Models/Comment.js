@@ -9,6 +9,15 @@ export default class Comment {
   }
 
   get Template() {
-    return;
+    return `
+    <a class="media-left" href="#">
+      <img src="http://lorempixel.com/40/40/people/2/">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading user_name">USER NAME WILL GO HERE</h4>
+      ${this.body}
+      <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+    </div>
+  </div>`;
   }
 }

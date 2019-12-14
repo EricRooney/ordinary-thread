@@ -1,4 +1,5 @@
 import PostsService from "../Services/PostsService.js";
+
 import store from "../store.js";
 
 //Private
@@ -13,9 +14,16 @@ function _drawPost() {
 //Public
 export default class PostsController {
   constructor() {
-    PostsService.getPostAsync();
+    this.getPostAsync();
     _drawPost();
     store.subscribe("posts", _drawPost);
+  }
+  async getPostAsync() {
+    try {
+      await PostsService.getPostAsync();
+    } catch (error) {
+      console.error(error);
+    }
   }
   async deletePostAsync(postId) {
     try {
