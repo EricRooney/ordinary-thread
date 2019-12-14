@@ -14,7 +14,7 @@ function _drawList() {
     item =>
       (template += `<li>
     <div class="border rounded bg-light tasks" style="margin: 1em;">
-  <h1 class="text-left border-bottom" id="name">${item.title}<button class="fa fa-plus-circle" aria-hidden="true" onclick="app.postsController.setActivePost('${item.id}')"></button></h1>
+  <h1 class="text-left" id="name">${item.title}<button class="fa fa-plus-circle" aria-hidden="true" onclick="app.postsController.setActivePost('${item.id}')"></button></h1>
 </div>
 </li>`)
   );
@@ -28,6 +28,7 @@ function _drawList() {
 //Public
 export default class PostsController {
   constructor() {
+    store.State.activePost.Template = "";
     this.getPostAsync();
     _drawPost();
     _drawList();
@@ -36,11 +37,11 @@ export default class PostsController {
   }
   setActivePost(id) {
     postService.setActivePost(id);
-    this.getCommentAsync();
+    this.getCommentAsync(id);
   }
-  async getCommentAsync() {
+  async getCommentAsync(id) {
     try {
-      await commentService.getCommentAsync();
+      await commentService.getCommentAsync(id);
     } catch (error) {
       console.error(error);
     }

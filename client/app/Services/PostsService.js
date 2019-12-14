@@ -18,7 +18,9 @@ class PostsService {
   }
   async deletePostAsync(postId) {
     let res = await _postsApi.delete(postId);
+    store.commit("activePost", {});
     console.log("deleted");
+
     this.getPostAsync();
   }
   async getPostAsync() {

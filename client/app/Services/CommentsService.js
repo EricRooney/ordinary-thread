@@ -13,8 +13,8 @@ class CommentsService {
     console.log("deleted");
     this.getCommentAsync();
   }
-  async getCommentAsync() {
-    let res = await _commentsApi.get();
+  async getCommentAsync(id) {
+    let res = await _commentsApi.get("", id);
     let comment = res.data.map(c => new Comment(c));
     store.commit("comments", comment);
     console.log("from comment store", store.State.comments);
