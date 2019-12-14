@@ -32,13 +32,17 @@ export default class Post {
                       ${this.body}
                     </p>
                     <p class="card-text">
-                      Comments<input type="text" placeholder="What'cha got on tap?"></Comments<input>
+                      Comments
+                      <form onsubmit="app.commentsController.addCommentAsync(event)">
+                        <input name="body" type="text" placeholder="What'cha got on tap?">
+                        <button>submit</button>
+                      </form>
                     </p>
                   </div>
                 </div>
               </div>
-            </div>`;
+            </div>
+            <div id="comment"></div>
+            `;
   }
-  // This will go back into line car-title
-  //onclick="app.postsController.deletePostAsync()"
 }

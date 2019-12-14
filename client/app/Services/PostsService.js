@@ -1,6 +1,7 @@
 import store from "../store.js";
 import post from "../Models/Post.js";
 import Post from "../Models/Post.js";
+import commentService from "./CommentsService.js";
 
 // @ts-ignore
 const _postsApi = axios.create({
@@ -20,7 +21,15 @@ class PostsService {
     store.commit("posts", post);
     console.log("from store", store.State.posts);
   }
+  async getOnePostAsync(id) {
+    let res = await _postsApi.get(id);
+    let post = res.data.map(p => new Post(p));
+    store.commit("posts", post);
+    //commentService.getCommentsByPostId(id)
+    console.log("from store", store.State.posts);
+  }
   async addPostAsync(post) {
+    debugger;
     let res = await _postsApi.post("", post);
     console.log("from post service", res);
     this.getPostAsync();
