@@ -5,7 +5,8 @@ import Comment from "./Models/Comment.js";
 let _state = {
   users: [],
   posts: [],
-  comments: []
+  comments: [],
+  activePost: {}
 };
 
 /** Collection of listeners to be called based on keyed state changes
@@ -14,7 +15,8 @@ let _state = {
 let _listeners = {
   users: [],
   posts: [],
-  comments: []
+  comments: [],
+  activePost: []
 };
 
 //NOTE You should not need to change the code from this point down

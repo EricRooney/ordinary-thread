@@ -8,6 +8,7 @@ function _drawComment() {
   let comment = store.State.comments;
   console.log("this is from the comment controller", comment);
   comment.forEach(c => (template += c.Template));
+
   document.getElementById("comment").innerHTML = template;
 }
 
@@ -15,16 +16,8 @@ function _drawComment() {
 export default class CommentsController {
   constructor() {
     console.log("from the comment controller");
-    // this.getCommentAsync();
-    // _drawComment();
     store.subscribe("comments", _drawComment);
-  }
-  async getCommentAsync() {
-    try {
-      await commentService.getCommentAsync();
-    } catch (error) {
-      console.error(error);
-    }
+    store.subscribe("activePost", _drawComment);
   }
 
   async deleteCommentAsync(commentId) {

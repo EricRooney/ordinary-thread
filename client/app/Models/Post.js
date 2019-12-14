@@ -11,26 +11,26 @@ export default class Post {
 
   get Template() {
     return /*html*/ `
-    <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                <div class="col-md-1 text-center">
-                  <img src="https://placehold.it/25x25" class="card-img" alt="..." />
-                  
-                  <button class="fas fa-thumbs-up"></button>
-                  <h4>800</h4>
-                  <button class="far fa-thumbs-down"></button>
-                 
+    <div>
+              <div class="row no-gutters" style="box-shadow: 2px 5px 16px -3px #000000">
+              <h2 class="card-title">${this.title}</h2>
+                <div class="col-1 text-center post" style="margin-right: 10px">
+                  <img src="https://placehold.it/25x25" class="card-img rounded-circle" alt="..." />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 post">
                   <img src="https://placehold.it/25x25" class="card-img" alt="..." />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-3 post">
                   <div class="card-body">
-                    <h5 class="card-title">${this.title}<button onclick="app.postsController.deletePostAsync('${this.id}')">X</button><button>EDIT</button></button></h5>
+                    
+                    <button class="fas fa-trash" onclick="app.postsController.deletePostAsync('${this.id}')"></button><button class="far fa-edit"></button>
 
                     <p class="card-text">
                       ${this.body}
                     </p>
+                    <button class="fas fa-thumbs-up"></button>
+                  <h4>800</h4>
+                  <button class="far fa-thumbs-down"></button>
                     <p class="card-text">
                       Comments
                       <form onsubmit="app.commentsController.addCommentAsync(event)">
@@ -39,6 +39,7 @@ export default class Post {
                       </form>
                     </p>
                   </div>
+
                 </div>
               </div>
             </div>
