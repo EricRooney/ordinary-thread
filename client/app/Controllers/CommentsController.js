@@ -15,16 +15,7 @@ function _drawComment() {
 export default class CommentsController {
   constructor() {
     console.log("from the comment controller");
-    // this.getCommentAsync();
-    // _drawComment();
     store.subscribe("comments", _drawComment);
-  }
-  async getCommentAsync() {
-    try {
-      await commentService.getCommentAsync();
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   async deleteCommentAsync(commentId) {

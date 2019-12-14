@@ -10,6 +10,12 @@ const _postsApi = axios.create({
 });
 
 class PostsService {
+  async setActivePost(activePostId) {
+    let res = await _postsApi.get(activePostId);
+    console.log("ActivePost", activePostId);
+    store.commit("activePost", new Post(res.data));
+    console.log("this is res from the setActivePost", res);
+  }
   async deletePostAsync(postId) {
     let res = await _postsApi.delete(postId);
     console.log("deleted");

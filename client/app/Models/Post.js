@@ -11,14 +11,12 @@ export default class Post {
 
   get Template() {
     return /*html*/ `
-    <div class="card mb-3" style="max-width: 540px;">
+    <div>
               <div class="row no-gutters">
-                <div class="col-md-1 text-center">
-                  <img src="https://placehold.it/25x25" class="card-img" alt="..." />
+                <div class="col-1 text-center style="view-width-100">
+                  <img src="https://placehold.it/25x25" class="card-img rounded-circle" alt="..." />
                   
-                  <button class="fas fa-thumbs-up"></button>
-                  <h4>800</h4>
-                  <button class="far fa-thumbs-down"></button>
+
                  
                 </div>
                 <div class="col-md-3">
@@ -31,6 +29,9 @@ export default class Post {
                     <p class="card-text">
                       ${this.body}
                     </p>
+                    <button class="fas fa-thumbs-up"></button>
+                  <h4>800</h4>
+                  <button class="far fa-thumbs-down"></button>
                     <p class="card-text">
                       Comments
                       <form onsubmit="app.commentsController.addCommentAsync(event)">

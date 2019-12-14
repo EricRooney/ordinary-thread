@@ -1,33 +1,60 @@
-import PostsService from "../Services/PostsService.js";
-
 import store from "../store.js";
+import postService from "../Services/PostsService.js";
+import commentService from "../Services/CommentsService.js";
 
 //Private
 function _drawPost() {
+  let template = store.State.activePost.Template;
+  document.getElementById("post-template").innerHTML = template;
+}
+function _drawList() {
   let template = "";
   let post = store.State.posts;
-  post.forEach(p => (template += p.Template));
-  document.getElementById("post-template").innerHTML = template;
-  console.log("this is from the posts controller", post);
+  post.forEach(
+    item =>
+      (template += `<li>
+    <div class="border rounded bg-light tasks" style="margin: 1em;">
+  <h1 class="text-left border-bottom" id="name">${item.title}<button class="fa fa-plus-circle" aria-hidden="true" onclick="app.postsController.setActivePost('${item.id}')"></button></h1>
+</div>
+</li>`)
+  );
+  document.getElementById("post-list").innerHTML = template;
 }
+// function _drawActivePost() {
+//   let post = store.State.activePost;
+//   document.getElementById("activePost").innerHTML = post.template;
+// }
 
 //Public
 export default class PostsController {
   constructor() {
     this.getPostAsync();
     _drawPost();
-    store.subscribe("posts", _drawPost);
+    _drawList();
+    store.subscribe("posts", _drawList);
+    store.subscribe("activePost", _drawPost);
+  }
+  setActivePost(id) {
+    postService.setActivePost(id);
+    this.getCommentAsync();
+  }
+  async getCommentAsync() {
+    try {
+      await commentService.getCommentAsync();
+    } catch (error) {
+      console.error(error);
+    }
   }
   async getPostAsync() {
     try {
-      await PostsService.getPostAsync();
+      await postService.getPostAsync();
     } catch (error) {
       console.error(error);
     }
   }
   async deletePostAsync(postId) {
     try {
-      await PostsService.deletePostAsync(postId);
+      await postService.deletePostAsync(postId);
     } catch (error) {
       debugger;
       console.error("[ERROR]:", error);
@@ -52,7 +79,7 @@ export default class PostsController {
     };
     console.log("we GOT HERE", post);
     try {
-      await PostsService.addPostAsync(post);
+      await postService.addPostAsync(post);
     } catch (error) {
       console.error("[ERROR]:", error);
     }
