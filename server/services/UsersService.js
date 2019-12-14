@@ -26,14 +26,19 @@ class UserService {
   async create(rawData) {
     return await _repository.create(rawData);
   }
-  async edit(id, update) {
-    let data = await _repository.findOneAndUpdate({ _id: id }, update, {
-      new: true
-    });
-    if (!data) {
-      throw new ApiError("Invalid Id", 400);
+  async edit(id, update, activeUserId) {
+    let userData = await _repository.findById({ id: id });
+    if (userData.id !== activeUserId) {
+      throw new ApiError("You're not the user who wrote this", 400);
+    } else {
+      let data = await _repository.findOneAndUpdate({ _id: id }, update, {
+        new: true
+      });
+      if (!data) {
+        throw new ApiError("Invalid Id", 400);
+      }
+      return data;
     }
-    return data;
   }
   async delete(id) {
     let data = await _repository.findOneAndDelete({ _id: id });

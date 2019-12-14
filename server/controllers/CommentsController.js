@@ -33,7 +33,11 @@ export default class CommentsController {
 
   async edit(req, res, next) {
     try {
-      let data = await commentsService.edit(req.params.id, req.body);
+      let data = await commentsService.edit(
+        req.params.id,
+        req.body,
+        req.activeUserId
+      );
       return res.send(data);
     } catch (error) {
       next(error);
