@@ -47,12 +47,12 @@ class PostService {
     }
     return data;
   }
-  //}
+  // }
   async delete(id, activeUserId) {
     // let userData = await _repository.findById({ id: id });
     // if (userData.id !== activeUserId) {
     //   throw new ApiError("You're not the user who wrote this", 400);
-    // } else {
+    //    } else {
     let data = await _repository.findOneAndDelete({ _id: id });
     if (!data) {
       throw new ApiError("Invalid Id", 400);
