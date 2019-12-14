@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Comment = new Schema(
   {
     userId: { type: String }, //NOTE Make required before you push to production
-    postId: { type: String, required: true },
+    postId: { type: String },
     body: { type: String, required: true },
     thumbsUp: { type: Number },
     thumbsDown: { type: Number }
